@@ -12,13 +12,21 @@ namespace Firma.Intranet.Controllers
         {
             _logger = logger;
         }
-
+   
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult Jachty()
+        {
+            return View();
+        }
+        public IActionResult Strony()
+        {
+            return View();
+        }
+   
+        public IActionResult Zapytania()
         {
             return View();
         }
