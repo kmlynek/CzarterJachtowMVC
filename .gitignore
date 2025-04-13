@@ -1,0 +1,26 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build results
+bin/
+obj/
+
+# ASP.NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# User-specific files
+*.db
+*.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Rider / JetBrains
+.idea/
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user

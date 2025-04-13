@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Oferta";
+}
+<h2 class="text-center mb-5">Wybierz swój czarter!</h2>
+
+<!-- Jachty motorowodne -->
+<h3 class="mb-3">Jachty motorowodne</h3>
+<div class="row g-4 mb-5">
+    @{
+        var motorowodne = new[] {
+    new { Img = "1.jpg", Tytul = "Posejdon 500", Opis = "Szybki i komfortowy jacht motorowodny, 4 osoby, silnik 200 KM." },
+    new { Img = "2.jpg", Tytul = "Rodos Explorer", Opis = "Luksusowy jacht z klimatyzacją i przestronnym pokładem." },
+    new { Img = "3.jpg", Tytul = "Lefkada Sport 320", Opis = "Idealny na szybkie wypady z portu. Łatwy w manewrowaniu." },
+    new { Img = "7.jpg", Tytul = "Atena Speedster", Opis = "Nowość sezonu 2025! Mocny silnik i nowoczesny design." },
+    new { Img = "5.jpg", Tytul = "Zakynthos Turbo", Opis = "Rodzinny jacht z dużym pokładem i nawigacją GPS." },
+    new { Img = "6.jpg", Tytul = "Greco Cruiser", Opis = "Cichy, kompaktowy i komfortowy – idealny na weekendy." }
+    };
+    }
+    @foreach (var jacht in motorowodne)
+    {
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="~/content/@jacht.Img" class="card-img-top" alt="@jacht.Tytul">
+                <div class="card-body">
+                    <h5 class="card-title">@jacht.Tytul</h5>
+                    <p class="card-text">@jacht.Opis</p>
+                    <a href="/Home/Kontakt" class="btn btn-outline-primary">Zarezerwuj</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Katamarany -->
+<h3 class="mb-3">Katamarany</h3>
+<div class="row g-4">
+    @{
+        var katamarany = new[] {
+    new { Img = "4.jpg", Tytul = "Athena 400", Opis = "Duży katamaran z 4 kabinami. Idealny dla większych grup i rodzin." },
+    new { Img = "8.jpg", Tytul = "Santorini Cat", Opis = "Luksus i przestrzeń – katamaran premium dla 10 osób." }
+    };
+    }
+    @foreach (var kat in katamarany)
+    {
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <img src="~/content/@kat.Img" class="card-img-top" alt="@kat.Tytul">
+                <div class="card-body">
+                    <h5 class="card-title">@kat.Tytul</h5>
+                    <p class="card-text">@kat.Opis</p>
+                    <a href="/Home/Kontakt" class="btn btn-outline-primary">Zarezerwuj</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
