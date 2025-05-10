@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Firma.PortalWWW", "Firma.PortalWWW\Firma.PortalWWW.csproj", "{D4AD2A04-1DF9-423E-AB90-A32AB72BF638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Firma.PortalWWW", "Firma.PortalWWW\Firma.PortalWWW.csproj", "{D4AD2A04-1DF9-423E-AB90-A32AB72BF638}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Firma.Intranet", "Firma.Intranet\Firma.Intranet.csproj", "{3908B251-77D9-44CF-A613-89F3BBF1C085}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Firma.Intranet", "Firma.Intranet\Firma.Intranet.csproj", "{3908B251-77D9-44CF-A613-89F3BBF1C085}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Firma.Data", "Firma.Data\Firma.Data.csproj", "{3A316C76-0FC7-4914-8999-7A231D10B540}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3908B251-77D9-44CF-A613-89F3BBF1C085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3908B251-77D9-44CF-A613-89F3BBF1C085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3908B251-77D9-44CF-A613-89F3BBF1C085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A316C76-0FC7-4914-8999-7A231D10B540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A316C76-0FC7-4914-8999-7A231D10B540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A316C76-0FC7-4914-8999-7A231D10B540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A316C76-0FC7-4914-8999-7A231D10B540}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
