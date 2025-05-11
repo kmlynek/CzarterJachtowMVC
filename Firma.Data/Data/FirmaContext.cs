@@ -1,11 +1,9 @@
-﻿using Firma.Data.Data.CMS;
+﻿using Microsoft.EntityFrameworkCore;
+using Firma.Data.Data.CMS;
+using Firma.Data.Data.Flota;
+using Firma.Data.Data.Rezerwacje;
+using Firma.Data.Data.Komunikacja;
 using Firma.Data.Data.Sklep;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Firma.Data.Data
 {
@@ -16,9 +14,26 @@ namespace Firma.Data.Data
         {
         }
 
-        public DbSet<Aktualnosc> Aktualnosc { get; set; } = default!;
+        // Flota
+        public DbSet<Jacht> Jachty { get; set; } = default!;
+        public DbSet<KategoriaJachtu> KategorieJachtow { get; set; } = default!;
+        public DbSet<Port> Porty { get; set; } = default!;
+        public DbSet<ZdjecieJachtu> ZdjeciaJachtow { get; set; } = default!;
+
+        // CMS
         public DbSet<Strona> Strona { get; set; } = default!;
+
+        // Rezerwacje
+        public DbSet<Klient> Klienci { get; set; } = default!;
+        public DbSet<Rezerwacja> Rezerwacje { get; set; } = default!;
+
+        // Komunikacja
+        public DbSet<Zapytanie> Zapytania { get; set; } = default!;
+
+        //Testowe
+        public DbSet<Aktualnosc> Aktualnosc { get; set; } = default!;
         public DbSet<Rodzaj> Rodzaj { get; set; } = default!;
         public DbSet<Towar> Towar { get; set; } = default!;
+
     }
 }
