@@ -1,53 +1,44 @@
 ﻿@model IEnumerable<Firma.Data.Data.CMS.Strona>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Strony";
 }
 
-<h1>Index</h1>
+<h2 class="mb-4"><i class="bi bi-file-earmark-text me-2"></i>Lista stron</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Dodaj stronę
+    </a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LinkTytul)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tytul)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tresc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pozycja)
-            </th>
-            <th></th>
+            <th>Link</th>
+            <th>Tytuł</th>
+            <th>Treść</th>
+            <th>Pozycja</th>
+            <th>Akcje</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LinkTytul)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tytul)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tresc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pozycja)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdStrony">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdStrony">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdStrony">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LinkTytul</td>
+                <td>@item.Tytul</td>
+                <td>@item.Tresc</td>
+                <td>@item.Pozycja</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdStrony" class="btn btn-warning btn-sm me-1" title="Edytuj">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.IdStrony" class="btn btn-danger btn-sm" title="Usuń">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
