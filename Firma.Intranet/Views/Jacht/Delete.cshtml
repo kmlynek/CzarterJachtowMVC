@@ -8,7 +8,6 @@
 
 <h5 class="mb-3">Czy na pewno chcesz usunąć ten jacht?</h5>
 
-<div class="border rounded p-4 bg-light shadow-sm mb-4">
     <dl class="row">
         <dt class="col-sm-3">Nazwa</dt>
         <dd class="col-sm-9">@Model.Nazwa</dd>
@@ -28,7 +27,6 @@
         <dt class="col-sm-3">Port</dt>
         <dd class="col-sm-9">@Model.IdPortu</dd>
     </dl>
-</div>
 
 <form asp-action="Delete">
     <input type="hidden" asp-for="IdJachtu" />

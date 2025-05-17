@@ -4,19 +4,21 @@
     ViewData["Title"] = "Zdjęcia jachtów";
 }
 
-<h1>Zdjęcia jachtów</h1>
+<h2 class="mb-4"><i class="bi bi-images me-2"></i>Lista zdjęć jachtów</h2>
 
 <p>
-    <a class="btn btn-primary" asp-action="Create">Dodaj nowe zdjęcie</a>
+    <a class="btn btn-success" asp-action="Create">
+        <i class="bi bi-plus-circle"></i> Dodaj nowe zdjęcie
+    </a>
 </p>
 
-<table class="table table-bordered table-striped">
-    <thead>
+<table class="table table-bordered table-striped align-middle">
+    <thead class="table-dark">
         <tr>
             <th>Podgląd</th>
             <th>Ścieżka</th>
             <th>Jacht</th>
-            <th></th>
+            <th>Akcje</th>
         </tr>
     </thead>
     <tbody>
@@ -24,21 +26,19 @@
         {
             <tr>
                 <td>
-                    <img src="@item.Sciezka" alt="Zdjęcie jachtu" style="max-height: 80px;" />
+                    <img src="@item.Sciezka" alt="Zdjęcie jachtu" style="max-height: 80px;" class="img-thumbnail" />
                 </td>
+                <td>@item.Sciezka</td>
+                <td>@item.IdJachtu</td>
                 <td>
-                    @item.Sciezka
-                </td>
-                <td>
-                    @item.Jacht?.Nazwa
-                </td>
-                <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.IdZdjecia">Edytuj</a>
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.IdZdjecia">Szczegóły</a>
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdZdjecia">Usuń</a>
+                    <a class="btn btn-warning btn-sm me-1" asp-action="Edit" asp-route-id="@item.IdZdjecia" title="Edytuj">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.IdZdjecia" title="Usuń">
+                        <i class="bi bi-trash"></i>
+                    </a>
                 </td>
             </tr>
-
         }
     </tbody>
 </table>
