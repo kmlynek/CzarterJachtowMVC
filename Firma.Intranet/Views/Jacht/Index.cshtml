@@ -1,65 +1,34 @@
 ﻿@model IEnumerable<Firma.Data.Data.Flota.Jacht>
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Jachty";
 }
-
-<h1>Index</h1>
+<h2 class="mb-4"><i class="bi bi-list-ul me-2"></i>Lista jachtów</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Dodaj jacht
+    </a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nazwa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RokBudowy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CenaZaDzien)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Opis)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdKategorii)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPortu)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(m => m.Nazwa)</th>
+            <th>@Html.DisplayNameFor(m => m.CenaZaDzien)</th>
+            <th>Akcje</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nazwa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RokBudowy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CenaZaDzien)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Opis)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdKategorii)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPortu)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdJachtu">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdJachtu">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdJachtu">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var jacht in Model)
+        {
+            <tr>
+                <td>@jacht.Nazwa</td>
+                <td>@jacht.CenaZaDzien</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@jacht.IdJachtu" class="btn btn-warning btn-sm me-1"><i class="bi bi-pencil"></i></a>
+                    <a asp-action="Delete" asp-route-id="@jacht.IdJachtu" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
