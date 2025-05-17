@@ -2,32 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Firma.Data.Data;
-using Firma.Data.Data.Sklep;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
+using Firma.Data.Data;
+using Firma.Data.Data.Flota;
 
 namespace Firma.Intranet.Controllers
 {
-    public class TowarController : Controller
+    public class KategoriaJachtuController : Controller
     {
         private readonly FirmaContext _context;
 
-        public TowarController(FirmaContext context)
+        public KategoriaJachtuController(FirmaContext context)
         {
             _context = context;
         }
 
-        // GET: Towar
+        // GET: KategoriaJachtu
         public async Task<IActionResult> Index()
         {
-            var firmaIntranetContext = _context.Towar.Include(t => t.Rodzaj);
-            return View(await firmaIntranetContext.ToListAsync());
+            return View(await _context.KategorieJachtow.ToListAsync());
         }
 
-        // GET: Towar/Details/5
+        // GET: KategoriaJachtu/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,42 +33,39 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar
-                .Include(t => t.Rodzaj)
-                .FirstOrDefaultAsync(m => m.IdTowaru == id);
-            if (towar == null)
+            var kategoriaJachtu = await _context.KategorieJachtow
+                .FirstOrDefaultAsync(m => m.IdKategorii == id);
+            if (kategoriaJachtu == null)
             {
                 return NotFound();
             }
 
-            return View(towar);
+            return View(kategoriaJachtu);
         }
 
-        // GET: Towar/Create
+        // GET: KategoriaJachtu/Create
         public IActionResult Create()
         {
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa");
             return View();
         }
 
-        // POST: Towar/Create
+        // POST: KategoriaJachtu/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdTowaru,Kod,Nazwa,Cena,FotoURL,Opis,IdRodzaju")] Towar towar)
+        public async Task<IActionResult> Create([Bind("IdKategorii,Nazwa")] KategoriaJachtu kategoriaJachtu)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(towar);
+                _context.Add(kategoriaJachtu);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }            
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            }
+            return View(kategoriaJachtu);
         }
 
-        // GET: Towar/Edit/5
+        // GET: KategoriaJachtu/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,23 +73,22 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar.FindAsync(id);
-            if (towar == null)
+            var kategoriaJachtu = await _context.KategorieJachtow.FindAsync(id);
+            if (kategoriaJachtu == null)
             {
                 return NotFound();
             }
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            return View(kategoriaJachtu);
         }
 
-        // POST: Towar/Edit/5
+        // POST: KategoriaJachtu/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdTowaru,Kod,Nazwa,Cena,FotoURL,Opis,IdRodzaju")] Towar towar)
+        public async Task<IActionResult> Edit(int id, [Bind("IdKategorii,Nazwa")] KategoriaJachtu kategoriaJachtu)
         {
-            if (id != towar.IdTowaru)
+            if (id != kategoriaJachtu.IdKategorii)
             {
                 return NotFound();
             }
@@ -103,12 +97,12 @@ namespace Firma.Intranet.Controllers
             {
                 try
                 {
-                    _context.Update(towar);
+                    _context.Update(kategoriaJachtu);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TowarExists(towar.IdTowaru))
+                    if (!KategoriaJachtuExists(kategoriaJachtu.IdKategorii))
                     {
                         return NotFound();
                     }
@@ -119,11 +113,10 @@ namespace Firma.Intranet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            return View(kategoriaJachtu);
         }
 
-        // GET: Towar/Delete/5
+        // GET: KategoriaJachtu/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,35 +124,34 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar
-                .Include(t => t.Rodzaj)
-                .FirstOrDefaultAsync(m => m.IdTowaru == id);
-            if (towar == null)
+            var kategoriaJachtu = await _context.KategorieJachtow
+                .FirstOrDefaultAsync(m => m.IdKategorii == id);
+            if (kategoriaJachtu == null)
             {
                 return NotFound();
             }
 
-            return View(towar);
+            return View(kategoriaJachtu);
         }
 
-        // POST: Towar/Delete/5
+        // POST: KategoriaJachtu/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var towar = await _context.Towar.FindAsync(id);
-            if (towar != null)
+            var kategoriaJachtu = await _context.KategorieJachtow.FindAsync(id);
+            if (kategoriaJachtu != null)
             {
-                _context.Towar.Remove(towar);
+                _context.KategorieJachtow.Remove(kategoriaJachtu);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TowarExists(int id)
+        private bool KategoriaJachtuExists(int id)
         {
-            return _context.Towar.Any(e => e.IdTowaru == id);
+            return _context.KategorieJachtow.Any(e => e.IdKategorii == id);
         }
     }
 }

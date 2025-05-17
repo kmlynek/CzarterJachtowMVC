@@ -2,32 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Firma.Data.Data;
-using Firma.Data.Data.Sklep;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
+using Firma.Data.Data;
+using Firma.Data.Data.Komunikacja;
 
 namespace Firma.Intranet.Controllers
 {
-    public class TowarController : Controller
+    public class ZapytanieController : Controller
     {
         private readonly FirmaContext _context;
 
-        public TowarController(FirmaContext context)
+        public ZapytanieController(FirmaContext context)
         {
             _context = context;
         }
 
-        // GET: Towar
+        // GET: Zapytanie
         public async Task<IActionResult> Index()
         {
-            var firmaIntranetContext = _context.Towar.Include(t => t.Rodzaj);
-            return View(await firmaIntranetContext.ToListAsync());
+            return View(await _context.Zapytania.ToListAsync());
         }
 
-        // GET: Towar/Details/5
+        // GET: Zapytanie/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,42 +33,39 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar
-                .Include(t => t.Rodzaj)
-                .FirstOrDefaultAsync(m => m.IdTowaru == id);
-            if (towar == null)
+            var zapytanie = await _context.Zapytania
+                .FirstOrDefaultAsync(m => m.IdZapytania == id);
+            if (zapytanie == null)
             {
                 return NotFound();
             }
 
-            return View(towar);
+            return View(zapytanie);
         }
 
-        // GET: Towar/Create
+        // GET: Zapytanie/Create
         public IActionResult Create()
         {
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa");
             return View();
         }
 
-        // POST: Towar/Create
+        // POST: Zapytanie/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdTowaru,Kod,Nazwa,Cena,FotoURL,Opis,IdRodzaju")] Towar towar)
+        public async Task<IActionResult> Create([Bind("IdZapytania,Temat,Tresc,Email,DataWyslania")] Zapytanie zapytanie)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(towar);
+                _context.Add(zapytanie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }            
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            }
+            return View(zapytanie);
         }
 
-        // GET: Towar/Edit/5
+        // GET: Zapytanie/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,23 +73,22 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar.FindAsync(id);
-            if (towar == null)
+            var zapytanie = await _context.Zapytania.FindAsync(id);
+            if (zapytanie == null)
             {
                 return NotFound();
             }
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            return View(zapytanie);
         }
 
-        // POST: Towar/Edit/5
+        // POST: Zapytanie/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdTowaru,Kod,Nazwa,Cena,FotoURL,Opis,IdRodzaju")] Towar towar)
+        public async Task<IActionResult> Edit(int id, [Bind("IdZapytania,Temat,Tresc,Email,DataWyslania")] Zapytanie zapytanie)
         {
-            if (id != towar.IdTowaru)
+            if (id != zapytanie.IdZapytania)
             {
                 return NotFound();
             }
@@ -103,12 +97,12 @@ namespace Firma.Intranet.Controllers
             {
                 try
                 {
-                    _context.Update(towar);
+                    _context.Update(zapytanie);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TowarExists(towar.IdTowaru))
+                    if (!ZapytanieExists(zapytanie.IdZapytania))
                     {
                         return NotFound();
                     }
@@ -119,11 +113,10 @@ namespace Firma.Intranet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            return View(zapytanie);
         }
 
-        // GET: Towar/Delete/5
+        // GET: Zapytanie/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,35 +124,34 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar
-                .Include(t => t.Rodzaj)
-                .FirstOrDefaultAsync(m => m.IdTowaru == id);
-            if (towar == null)
+            var zapytanie = await _context.Zapytania
+                .FirstOrDefaultAsync(m => m.IdZapytania == id);
+            if (zapytanie == null)
             {
                 return NotFound();
             }
 
-            return View(towar);
+            return View(zapytanie);
         }
 
-        // POST: Towar/Delete/5
+        // POST: Zapytanie/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var towar = await _context.Towar.FindAsync(id);
-            if (towar != null)
+            var zapytanie = await _context.Zapytania.FindAsync(id);
+            if (zapytanie != null)
             {
-                _context.Towar.Remove(towar);
+                _context.Zapytania.Remove(zapytanie);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TowarExists(int id)
+        private bool ZapytanieExists(int id)
         {
-            return _context.Towar.Any(e => e.IdTowaru == id);
+            return _context.Zapytania.Any(e => e.IdZapytania == id);
         }
     }
 }

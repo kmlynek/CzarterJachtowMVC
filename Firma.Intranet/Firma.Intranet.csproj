@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Firma.Data\Firma.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\content\" />
+  </ItemGroup>
+
 </Project>

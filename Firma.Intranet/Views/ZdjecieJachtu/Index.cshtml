@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Firma.Data.Data.Flota.ZdjecieJachtu>
+
+@{
+    ViewData["Title"] = "Zdjęcia jachtów";
+}
+
+<h1>Zdjęcia jachtów</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Dodaj nowe zdjęcie</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Podgląd</th>
+            <th>Ścieżka</th>
+            <th>Jacht</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.Sciezka" alt="Zdjęcie jachtu" style="max-height: 80px;" />
+                </td>
+                <td>
+                    @item.Sciezka
+                </td>
+                <td>
+                    @item.Jacht?.Nazwa
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.IdZdjecia">Edytuj</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.IdZdjecia">Szczegóły</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdZdjecia">Usuń</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

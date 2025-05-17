@@ -2,32 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Firma.Data.Data;
-using Firma.Data.Data.Sklep;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
+using Firma.Data.Data;
+using Firma.Data.Data.Flota;
 
 namespace Firma.Intranet.Controllers
 {
-    public class TowarController : Controller
+    public class PortController : Controller
     {
         private readonly FirmaContext _context;
 
-        public TowarController(FirmaContext context)
+        public PortController(FirmaContext context)
         {
             _context = context;
         }
 
-        // GET: Towar
+        // GET: Port
         public async Task<IActionResult> Index()
         {
-            var firmaIntranetContext = _context.Towar.Include(t => t.Rodzaj);
-            return View(await firmaIntranetContext.ToListAsync());
+            return View(await _context.Porty.ToListAsync());
         }
 
-        // GET: Towar/Details/5
+        // GET: Port/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,42 +33,39 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar
-                .Include(t => t.Rodzaj)
-                .FirstOrDefaultAsync(m => m.IdTowaru == id);
-            if (towar == null)
+            var port = await _context.Porty
+                .FirstOrDefaultAsync(m => m.IdPortu == id);
+            if (port == null)
             {
                 return NotFound();
             }
 
-            return View(towar);
+            return View(port);
         }
 
-        // GET: Towar/Create
+        // GET: Port/Create
         public IActionResult Create()
         {
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa");
             return View();
         }
 
-        // POST: Towar/Create
+        // POST: Port/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdTowaru,Kod,Nazwa,Cena,FotoURL,Opis,IdRodzaju")] Towar towar)
+        public async Task<IActionResult> Create([Bind("IdPortu,Nazwa,Lokalizacja")] Port port)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(towar);
+                _context.Add(port);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }            
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            }
+            return View(port);
         }
 
-        // GET: Towar/Edit/5
+        // GET: Port/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,23 +73,22 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar.FindAsync(id);
-            if (towar == null)
+            var port = await _context.Porty.FindAsync(id);
+            if (port == null)
             {
                 return NotFound();
             }
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            return View(port);
         }
 
-        // POST: Towar/Edit/5
+        // POST: Port/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdTowaru,Kod,Nazwa,Cena,FotoURL,Opis,IdRodzaju")] Towar towar)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPortu,Nazwa,Lokalizacja")] Port port)
         {
-            if (id != towar.IdTowaru)
+            if (id != port.IdPortu)
             {
                 return NotFound();
             }
@@ -103,12 +97,12 @@ namespace Firma.Intranet.Controllers
             {
                 try
                 {
-                    _context.Update(towar);
+                    _context.Update(port);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TowarExists(towar.IdTowaru))
+                    if (!PortExists(port.IdPortu))
                     {
                         return NotFound();
                     }
@@ -119,11 +113,10 @@ namespace Firma.Intranet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            return View(port);
         }
 
-        // GET: Towar/Delete/5
+        // GET: Port/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,35 +124,34 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar
-                .Include(t => t.Rodzaj)
-                .FirstOrDefaultAsync(m => m.IdTowaru == id);
-            if (towar == null)
+            var port = await _context.Porty
+                .FirstOrDefaultAsync(m => m.IdPortu == id);
+            if (port == null)
             {
                 return NotFound();
             }
 
-            return View(towar);
+            return View(port);
         }
 
-        // POST: Towar/Delete/5
+        // POST: Port/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var towar = await _context.Towar.FindAsync(id);
-            if (towar != null)
+            var port = await _context.Porty.FindAsync(id);
+            if (port != null)
             {
-                _context.Towar.Remove(towar);
+                _context.Porty.Remove(port);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TowarExists(int id)
+        private bool PortExists(int id)
         {
-            return _context.Towar.Any(e => e.IdTowaru == id);
+            return _context.Porty.Any(e => e.IdPortu == id);
         }
     }
 }

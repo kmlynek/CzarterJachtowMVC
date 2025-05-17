@@ -2,32 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Firma.Data.Data;
-using Firma.Data.Data.Sklep;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
+using Firma.Data.Data;
+using Firma.Data.Data.Rezerwacje;
 
 namespace Firma.Intranet.Controllers
 {
-    public class TowarController : Controller
+    public class RezerwacjaController : Controller
     {
         private readonly FirmaContext _context;
 
-        public TowarController(FirmaContext context)
+        public RezerwacjaController(FirmaContext context)
         {
             _context = context;
         }
 
-        // GET: Towar
+        // GET: Rezerwacja
         public async Task<IActionResult> Index()
         {
-            var firmaIntranetContext = _context.Towar.Include(t => t.Rodzaj);
-            return View(await firmaIntranetContext.ToListAsync());
+            return View(await _context.Rezerwacje.ToListAsync());
         }
 
-        // GET: Towar/Details/5
+        // GET: Rezerwacja/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,42 +33,45 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar
-                .Include(t => t.Rodzaj)
-                .FirstOrDefaultAsync(m => m.IdTowaru == id);
-            if (towar == null)
+            var rezerwacja = await _context.Rezerwacje
+                .FirstOrDefaultAsync(m => m.IdRezerwacji == id);
+            if (rezerwacja == null)
             {
                 return NotFound();
             }
 
-            return View(towar);
+            return View(rezerwacja);
         }
 
-        // GET: Towar/Create
+        // GET: Rezerwacja/Create
         public IActionResult Create()
         {
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa");
+            ViewData["IdJachtu"] = new SelectList(_context.Jachty, "IdJachtu", "Nazwa");
+            ViewData["IdKlienta"] = new SelectList(_context.Klienci, "IdKlienta", "Email");
+
             return View();
         }
 
-        // POST: Towar/Create
+        // POST: Rezerwacja/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdTowaru,Kod,Nazwa,Cena,FotoURL,Opis,IdRodzaju")] Towar towar)
+        public async Task<IActionResult> Create([Bind("IdRezerwacji,DataOd,DataDo,IdJachtu,IdKlienta")] Rezerwacja rezerwacja)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(towar);
+                _context.Add(rezerwacja);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }            
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            }
+            ViewData["IdJachtu"] = new SelectList(_context.Jachty, "IdJachtu", "Nazwa");
+            ViewData["IdKlienta"] = new SelectList(_context.Klienci, "IdKlienta", "Email");
+
+            return View(rezerwacja);
         }
 
-        // GET: Towar/Edit/5
+        // GET: Rezerwacja/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,23 +79,25 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar.FindAsync(id);
-            if (towar == null)
+            var rezerwacja = await _context.Rezerwacje.FindAsync(id);
+            if (rezerwacja == null)
             {
                 return NotFound();
             }
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            ViewData["IdJachtu"] = new SelectList(_context.Jachty, "IdJachtu", "Nazwa", rezerwacja.IdJachtu);
+            ViewData["IdKlienta"] = new SelectList(_context.Klienci, "IdKlienta", "Email", rezerwacja.IdKlienta);
+
+            return View(rezerwacja);
         }
 
-        // POST: Towar/Edit/5
+        // POST: Rezerwacja/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdTowaru,Kod,Nazwa,Cena,FotoURL,Opis,IdRodzaju")] Towar towar)
+        public async Task<IActionResult> Edit(int id, [Bind("IdRezerwacji,DataOd,DataDo,IdJachtu,IdKlienta")] Rezerwacja rezerwacja)
         {
-            if (id != towar.IdTowaru)
+            if (id != rezerwacja.IdRezerwacji)
             {
                 return NotFound();
             }
@@ -103,12 +106,12 @@ namespace Firma.Intranet.Controllers
             {
                 try
                 {
-                    _context.Update(towar);
+                    _context.Update(rezerwacja);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TowarExists(towar.IdTowaru))
+                    if (!RezerwacjaExists(rezerwacja.IdRezerwacji))
                     {
                         return NotFound();
                     }
@@ -119,11 +122,10 @@ namespace Firma.Intranet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdRodzaju"] = new SelectList(_context.Rodzaj, "IdRodzaju", "Nazwa", towar.IdRodzaju);
-            return View(towar);
+            return View(rezerwacja);
         }
 
-        // GET: Towar/Delete/5
+        // GET: Rezerwacja/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,35 +133,34 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var towar = await _context.Towar
-                .Include(t => t.Rodzaj)
-                .FirstOrDefaultAsync(m => m.IdTowaru == id);
-            if (towar == null)
+            var rezerwacja = await _context.Rezerwacje
+                .FirstOrDefaultAsync(m => m.IdRezerwacji == id);
+            if (rezerwacja == null)
             {
                 return NotFound();
             }
 
-            return View(towar);
+            return View(rezerwacja);
         }
 
-        // POST: Towar/Delete/5
+        // POST: Rezerwacja/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var towar = await _context.Towar.FindAsync(id);
-            if (towar != null)
+            var rezerwacja = await _context.Rezerwacje.FindAsync(id);
+            if (rezerwacja != null)
             {
-                _context.Towar.Remove(towar);
+                _context.Rezerwacje.Remove(rezerwacja);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TowarExists(int id)
+        private bool RezerwacjaExists(int id)
         {
-            return _context.Towar.Any(e => e.IdTowaru == id);
+            return _context.Rezerwacje.Any(e => e.IdRezerwacji == id);
         }
     }
 }

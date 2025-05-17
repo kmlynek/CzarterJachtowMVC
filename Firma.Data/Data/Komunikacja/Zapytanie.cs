@@ -19,6 +19,7 @@ namespace Firma.Data.Data.Komunikacja
         public string Email { get; set; }
 
         [Display(Name = "Data wysłania")]
-        public DateTime DataWyslania { get; set; } = DateTime.Now;
+        public DateTime DataWyslania { get; set; }
+
     }
 }

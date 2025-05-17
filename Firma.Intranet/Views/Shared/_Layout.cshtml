@@ -26,36 +26,53 @@
                             <i class="bi bi-house-door-fill me-1"></i> Start
                         </a>
                     </li>
+
+                    <!-- Flota -->
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Jachty">Jachty</a>
-                            <i class="bi bi-ship me-1"></i> Jachty
+                        <a class="nav-link" asp-controller="Jacht" asp-action="Index">
+                            <i class="bi bi-rocket-takeoff me-1"></i> Jachty
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Strony">Strony</a>
-                            <i class="bi bi-file-earmark-text me-1"></i> Strony
+                        <a class="nav-link" asp-controller="KategoriaJachtu" asp-action="Index">
+                            <i class="bi bi-bookmark-star me-1"></i> Kategorie
                         </a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" asp-controller="Home" asp-action="Zapytania">Zapytania</a>
+                        <a class="nav-link" asp-controller="Port" asp-action="Index">
+                            <i class="bi bi-geo-alt-fill me-1"></i> Porty
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="ZdjecieJachtu" asp-action="Index">
+                            <i class="bi bi-images me-1"></i> Zdjęcia
+                        </a>
+                    </li>
+
+                    <!-- Rezerwacje -->
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Klient" asp-action="Index">
+                            <i class="bi bi-person-fill me-1"></i> Klienci
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Rezerwacja" asp-action="Index">
+                            <i class="bi bi-calendar-check-fill me-1"></i> Rezerwacje
+                        </a>
+                    </li>
+
+                    <!-- CMS -->
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Strona" asp-action="Index">
+                            <i class="bi bi-file-earmark-text-fill me-1"></i> Strony
+                        </a>
+                    </li>
+
+                    <!-- Komunikacja -->
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Zapytanie" asp-action="Index">
                             <i class="bi bi-inbox-fill me-1"></i> Zapytania
                         </a>
-                    </li>
-                    <!-- Poniżej kod z odnośnikami z wykładu  -->
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Strona" asp-action="Index">Strony</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Aktualnosc" asp-action="Index">Aktualnosci</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Rodzaj" asp-action="Index">Rodzaje</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Towar" asp-action="Index">Towary</a>
                     </li>
                 </ul>
             </div>
