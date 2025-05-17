@@ -15,6 +15,7 @@
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
+            <th>@Html.DisplayNameFor(m => m.IdKategorii)</th>
             <th>@Html.DisplayNameFor(m => m.Nazwa)</th>
             <th>Akcje</th>
         </tr>
@@ -23,6 +24,7 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>@item.IdKategorii</td>
                 <td>@item.Nazwa</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.IdKategorii" class="btn btn-warning btn-sm me-1">
