@@ -22,11 +22,14 @@ namespace Firma.Intranet.Controllers
         // GET: Jacht
         public async Task<IActionResult> Index()
         {
-            var jachty = _context.Jachty
+            var jachty = await _context.Jachty
                 .Include(j => j.KategoriaJachtu)
-                .Include(j => j.Port);
-            return View(await jachty.ToListAsync());
+                .Include(j => j.Port)
+                .ToListAsync();
+
+            return View(jachty);
         }
+
 
         // GET: Jacht/Details/5
         public async Task<IActionResult> Details(int? id)

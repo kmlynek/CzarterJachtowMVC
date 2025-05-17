@@ -15,6 +15,7 @@
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
+            <th>@Html.DisplayNameFor(m => m.IdKlienta)</th>
             <th>@Html.DisplayNameFor(m => m.Imie)</th>
             <th>@Html.DisplayNameFor(m => m.Nazwisko)</th>
             <th>@Html.DisplayNameFor(m => m.Email)</th>
@@ -25,6 +26,7 @@
         @foreach (var klient in Model)
         {
             <tr>
+                <td>@klient.IdKlienta</td>
                 <td>@klient.Imie</td>
                 <td>@klient.Nazwisko</td>
                 <td>@klient.Email</td>

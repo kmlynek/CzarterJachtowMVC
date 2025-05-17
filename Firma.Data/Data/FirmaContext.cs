@@ -24,8 +24,8 @@ namespace Firma.Data.Data
         public DbSet<Strona> Strona { get; set; } = default!;
 
         // Rezerwacje
-        public DbSet<Klient> Klienci { get; set; } = default!;
-        public DbSet<Rezerwacja> Rezerwacje { get; set; } = default!;
+        public DbSet<Rezerwacja> Rezerwacje { get; set; }
+        public DbSet<Klient> Klienci { get; set; }
 
         // Komunikacja
         public DbSet<Zapytanie> Zapytania { get; set; } = default!;

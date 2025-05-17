@@ -13,8 +13,13 @@
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
+            <th>@Html.DisplayNameFor(m => m.IdJachtu)</th>
             <th>@Html.DisplayNameFor(m => m.Nazwa)</th>
+            <th>@Html.DisplayNameFor(m => m.RokBudowy)</th>
             <th>@Html.DisplayNameFor(m => m.CenaZaDzien)</th>
+            <th>@Html.DisplayNameFor(m => m.Opis)</th>
+            <th>@Html.DisplayNameFor(m => m.KategoriaJachtu)</th>
+            <th>@Html.DisplayNameFor(m => m.Port)</th>
             <th>Akcje</th>
         </tr>
     </thead>
@@ -22,8 +27,14 @@
         @foreach (var jacht in Model)
         {
             <tr>
+                <td>@jacht.IdJachtu</td>
                 <td>@jacht.Nazwa</td>
+                <td>@jacht.RokBudowy</td>
                 <td>@jacht.CenaZaDzien</td>
+                <td>@jacht.Opis</td>
+                <td>@jacht.IdKategorii</td>
+                <td>@jacht.IdPortu</td>
+
                 <td>
                     <a asp-action="Edit" asp-route-id="@jacht.IdJachtu" class="btn btn-warning btn-sm me-1"><i class="bi bi-pencil"></i></a>
                     <a asp-action="Delete" asp-route-id="@jacht.IdJachtu" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>

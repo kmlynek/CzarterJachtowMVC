@@ -1,52 +1,42 @@
 ﻿@model IEnumerable<Firma.Data.Data.Rezerwacje.Rezerwacja>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Rezerwacje";
 }
 
-<h1>Index</h1>
+<h2 class="mb-4"><i class="bi bi-calendar-check me-2"></i>Lista rezerwacji</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Dodaj rezerwację
+    </a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DataOd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataDo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdJachtu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdKlienta)
-            </th>
-            <th></th>
+            <th>Data od</th>
+            <th>Data do</th>
+            <th>Jacht</th>
+            <th>Klient</th>
+            <th>Akcje</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td>@item.DataOd.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@item.DataDo.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@item.IdJachtu</td> 
+                <td>@item.IdKlienta</td> 
                 <td>
-                    @Html.DisplayFor(modelItem => item.DataOd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataDo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdJachtu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdKlienta)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdRezerwacji">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.IdRezerwacji">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdRezerwacji">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdRezerwacji" class="btn btn-warning btn-sm me-1" title="Edytuj">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.IdRezerwacji" class="btn btn-danger btn-sm" title="Usuń">
+                        <i class="bi bi-trash"></i>
+                    </a>
                 </td>
             </tr>
         }
