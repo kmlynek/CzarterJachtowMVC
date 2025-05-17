@@ -4,71 +4,49 @@
 
 <div class="alert alert-info d-flex align-items-center" role="alert">
     <i class="bi bi-info-circle-fill me-2"></i>
-    Witaj w panelu administracyjnym Morski Czarter! Pamiętaj o regularnym aktualizowaniu oferty przed sezonem.
+    Witaj w panelu administracyjnym Morski Czarter!
 </div>
 
 <!-- Sekcja Statystyki -->
 <h4 class="mb-3">Statystyki</h4>
 <div class="row g-4 mb-5">
     <!-- Strony -->
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card text-center shadow-sm">
             <div class="card-body">
                 <i class="bi bi-file-earmark-text-fill display-4 text-success mb-2"></i>
-                <h5 class="card-title">3 strony</h5>
-                <p class="card-text text-muted">Treści portalu</p>
+                <h5 class="card-title">@ViewBag.LiczbaStron</h5>
+                <p class="card-text text-muted">Liczba stron</p>
             </div>
         </div>
     </div>
     <!-- Zapytania -->
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card text-center shadow-sm">
             <div class="card-body">
                 <i class="bi bi-inbox-fill display-4 text-danger mb-2"></i>
-                <h5 class="card-title">5 zapytań</h5>
-                <p class="card-text text-muted">Otrzymanych od klientów</p>
+                <h5 class="card-title">@ViewBag.LiczbaZapytan</h5>
+                <p class="card-text text-muted">Ilość zapytań od klientów</p>
             </div>
         </div>
     </div>
-    <!-- Sezon -->
-    <div class="col-md-4">
+    <!-- Rezerwacje -->
+    <div class="col-md-3">
         <div class="card text-center shadow-sm">
             <div class="card-body">
-                <i class="bi bi-calendar-event-fill display-4 text-warning mb-2"></i>
-                <h5 class="card-title">Sezon 2025</h5>
-                <p class="card-text text-muted">Lipiec – Sierpień</p>
+                <i class="bi bi-calendar-check-fill display-4 text-warning mb-2"></i>
+                <h5 class="card-title">@ViewBag.LiczbaRezerwacji</h5>
+                <p class="card-text text-muted">Liczba rezerwacji</p>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Sekcja Dostępność jachtów -->
-<h4 class="mb-3">Dostępność jachtów</h4>
-<div class="row g-4 mb-5">
-    <!-- Motorowodne -->
-    <div class="col-md-6">
-        <div class="card shadow-sm">
+    <!-- Klienci -->
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
             <div class="card-body">
-                <h5 class="card-title"><i class="bi bi-rocket text-primary me-2"></i> Motorowodne</h5>
-                <p class="mb-2">
-                    <span class="badge bg-success">Aktywne: 5</span>
-                    <span class="badge bg-warning text-dark ms-2">W trakcie rezerwacji: 1</span>
-                    <span class="badge bg-danger ms-2">Nieaktywne: 0</span>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Katamarany -->
-    <div class="col-md-6">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title"><i class="bi bi-rocket text-info me-2"></i> Katamarany</h5>
-                <p class="mb-2">
-                    <span class="badge bg-success">Aktywne: 1</span>
-                    <span class="badge bg-warning text-dark ms-2">W trakcie rezerwacji: 0</span>
-                    <span class="badge bg-danger ms-2">Nieaktywne: 1</span>
-                </p>
+                <i class="bi bi-person-fill display-4 text-primary mb-2"></i>
+                <h5 class="card-title">@ViewBag.LiczbaKlientow</h5>
+                <p class="card-text text-muted">Ilość klientów</p>
             </div>
         </div>
     </div>
@@ -78,51 +56,44 @@
 <!-- Sekcja Szybki dostęp -->
 <h4 class="mb-3">Szybki dostęp</h4>
 <div class="row g-4 mb-5">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card shadow-sm h-100 text-center">
             <div class="card-body d-flex flex-column justify-content-between">
-                <i class="bi bi-rocket display-3 text-primary mb-3"></i> 
+                <i class="bi bi-rocket display-3 text-primary mb-3"></i>
                 <h5 class="card-title">Zarządzaj jachtami</h5>
                 <p class="card-text">Dodawaj, edytuj i usuwaj jednostki pływające z oferty.</p>
-                <a asp-controller="Home" asp-action="Jachty" class="btn btn-outline-primary mt-3">Przejdź</a>
+                <a asp-controller="Jacht" asp-action="Index" class="btn btn-outline-primary mt-3">Przejdź</a>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card shadow-sm h-100 text-center">
             <div class="card-body d-flex flex-column justify-content-between">
-                <i class="bi bi-file-text-fill display-3 text-success mb-3"></i>
-                <h5 class="card-title">Treści portalu</h5>
-                <p class="card-text">Edytuj treści podstron widocznych dla klientów.</p>
-                <a asp-controller="Home" asp-action="Strony" class="btn btn-outline-success mt-3">Przejdź</a>
+                <i class="bi bi-people-fill display-3 text-dark mb-3"></i>
+                <h5 class="card-title">Baza klientów</h5>
+                <p class="card-text">Lista wszystkich zarejestrowanych klientów.</p>
+                <a asp-controller="Klient" asp-action="Index" class="btn btn-outline-dark mt-3">Przejdź</a>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card shadow-sm h-100 text-center">
             <div class="card-body d-flex flex-column justify-content-between">
-                <i class="bi bi-inbox-fill display-3 text-danger mb-3"></i>
-                <h5 class="card-title">Zapytania klientów</h5>
-                <p class="card-text">Przeglądaj i obsługuj wiadomości od klientów.</p>
-                <a asp-controller="Home" asp-action="Zapytania" class="btn btn-outline-danger mt-3">Przejdź</a>
+                <i class="bi bi-calendar-event-fill display-3 text-warning mb-3"></i>
+                <h5 class="card-title">Rezerwacje</h5>
+                <p class="card-text">Podgląd aktualnych i archiwalnych rezerwacji.</p>
+                <a asp-controller="Rezerwacja" asp-action="Index" class="btn btn-outline-warning mt-3">Przejdź</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100 text-center">
+            <div class="card-body d-flex flex-column justify-content-between">
+                <i class="bi bi-images display-3 text-secondary mb-3"></i>
+                <h5 class="card-title">Galeria jachtów</h5>
+                <p class="card-text">Zarządzaj zdjęciami przypisanymi do jachtów.</p>
+                <a asp-controller="ZdjecieJachtu" asp-action="Index" class="btn btn-outline-secondary mt-3">Przejdź</a>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Sekcja Ostatnie akcje -->
-<h4 class="mb-3">Ostatnie akcje</h4>
-<ul class="list-group">
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Dodano nowy jacht: Posejdon 500
-        <span class="badge bg-secondary">2 dni temu</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Zaktualizowano stronę: Oferta
-        <span class="badge bg-secondary">5 dni temu</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Otrzymano nowe zapytanie od Jan Kowalski
-        <span class="badge bg-secondary">7 dni temu</span>
-    </li>
-</ul>
