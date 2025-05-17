@@ -1,27 +1,22 @@
 ﻿@model Firma.Data.Data.Flota.KategoriaJachtu
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Usuń kategorię jachtu";
 }
 
-<h1>Delete</h1>
+<h2 class="mb-4 text-danger"><i class="bi bi-trash-fill me-2"></i>Usuń kategorię jachtu</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>KategoriaJachtu</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nazwa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nazwa)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="IdKategorii" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<h4 class="mb-3">Czy na pewno chcesz usunąć tę kategorię?</h4>
+
+<div class="mb-3">
+    <label class="form-label fw-bold">Nazwa:</label>
+    <p>@Model.Nazwa</p>
 </div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="IdKategorii" />
+    <button type="submit" class="btn btn-danger">
+        <i class="bi bi-trash"></i> Usuń
+    </button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Anuluj</a>
+</form>
