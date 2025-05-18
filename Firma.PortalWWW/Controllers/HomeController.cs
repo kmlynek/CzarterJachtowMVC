@@ -1,3 +1,4 @@
+using Firma.Data.Data;
 using Firma.PortalWWW.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -7,16 +8,34 @@ namespace Firma.PortalWWW.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly FirmaContext _context;
+        public HomeController(ILogger<HomeController> logger, FirmaContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            //Ten VieBag wysyla wszystkie strony do widoku Odnosniki
+            ViewBag.ModelStrony =
+                (
+                    from strona in _context.Strona //dla kazdej strony z bazy danych context stron 
+                    orderby strona.Pozycja //posortowanej wzgledem pozycji
+                    select strona //pobieramy strone
+                ).ToList();
+
+            //Ten VieBag wysyla wszystkie jachty z BD do widoku PoelcaneJachty
+            ViewBag.PolecaneJachty = (
+                    from jacht in _context.Jachty
+                    orderby jacht.IdJachtu descending 
+                    select jacht
+                ).Take(3).ToList();//Wyswietl maksymalnie 3 pierwsze jachty
+
             return View();
+
         }
+
 
         public IActionResult Oferta()
         {

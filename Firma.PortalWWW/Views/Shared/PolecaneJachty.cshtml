@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Firma.Data.Data.Flota.Jacht>
+
+<div class="container mb-5">
+    <h2 class="text-center mb-4">Polecane jachty</h2>
+
+    <div class="row">
+        @foreach (var jacht in Model)
+
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="border rounded shadow-sm p-3 h-100">
+                    <h5 class="text-primary">@jacht.Nazwa</h5>
+                    <p><strong>Port:</strong> @jacht.RokBudowy</p>
+                    <p>@jacht.Opis</p>
+                    <a asp-controller="Jacht" asp-action="Index" class="btn btn-sm btn-outline-primary">Zobacz wszystkie</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

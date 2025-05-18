@@ -14,7 +14,7 @@ namespace Firma.Data.Data.Komunikacja
         [Display(Name = "Treść wiadomości")]
         public string? Tresc { get; set; }
 
-        [Required, EmailAddress]
+        [Required]
         [Display(Name = "Adres e-mail")]
         public string Email { get; set; }
 
