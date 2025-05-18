@@ -7,12 +7,16 @@
         @foreach (var jacht in Model)
 
         {
+
+            var sciezkaPliku = $"{jacht.IdJachtu}.jpg";
+
             <div class="col-md-6 col-lg-4 mb-4">
-                <div class="border rounded shadow-sm p-3 h-100">
-                    <h5 class="text-primary">@jacht.Nazwa</h5>
-                    <p><strong>Port:</strong> @jacht.RokBudowy</p>
+                <div class="border rounded shadow-sm p-3 h-100 text-center">
+                    <img src="~/content/@sciezkaPliku" class="img-fluid rounded mb-3" style="height: 200px; object-fit: cover;" alt="@jacht.Nazwa" />
+
+                    <h5 class="text-primary">@jacht.Nazwa</h5>                    
                     <p>@jacht.Opis</p>
-                    <a asp-controller="Jacht" asp-action="Index" class="btn btn-sm btn-outline-primary">Zarezerwuj</a>
+                    <a asp-controller="Home" asp-action="Kontakt" class="btn btn-sm btn-outline-primary">Zarezerwuj</a>
                 </div>
             </div>
         }

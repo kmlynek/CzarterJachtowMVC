@@ -57,6 +57,17 @@ namespace Firma.PortalWWW.Controllers
             return View(porty);
 
         }
+        public IActionResult Kategorie()
+        {
+            ViewBag.ModelKategorie = (
+                from k in _context.KategorieJachtow
+                orderby k.Nazwa
+                select k
+            ).ToList();
+
+            return View();
+        }
+
 
 
 

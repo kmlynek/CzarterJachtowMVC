@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Kategorie jachtów";
+    var kategorie = ViewBag.ModelKategorie as List<Firma.Data.Data.Flota.KategoriaJachtu>;
+}
+
+<h2 class="text-center mb-4">Rodzaje jachtów</h2>
+
+<div class="row">
+    @foreach (var kat in kategorie)
+    {
+        var sciezkaPliku = $"{kat.IdKategorii}.jpg";
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="~/content/@sciezkaPliku" class="card-img-top" alt="@kat.Nazwa">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@kat.Nazwa</h5>
+                </div>
+            </div>
+        </div>
+    }
+</div>
