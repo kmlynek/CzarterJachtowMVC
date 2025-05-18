@@ -8,11 +8,11 @@
 <div class="row">
     @foreach (var kat in kategorie)
     {
-        var sciezkaPliku = $"{kat.IdKategorii}.jpg";
+        var sciezka = $"{kat.IdKategorii}.jpg";
 
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
-                <img src="~/content/@sciezkaPliku" class="card-img-top" alt="@kat.Nazwa">
+                <img src="~/content/@sciezka" class="card-img-top" alt="@kat.Nazwa">
                 <div class="card-body text-center">
                     <h5 class="card-title">@kat.Nazwa</h5>
                 </div>

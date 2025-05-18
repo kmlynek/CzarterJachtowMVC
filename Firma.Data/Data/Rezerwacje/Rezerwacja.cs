@@ -1,5 +1,6 @@
 ﻿using Firma.Data.Data.Flota;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Firma.Data.Data.Rezerwacje
 {
@@ -18,10 +19,14 @@ namespace Firma.Data.Data.Rezerwacje
 
         [Display(Name = "Jacht")]
         public int IdJachtu { get; set; }
+        
+        [ForeignKey("IdJachtu")]
         public Jacht? Jacht { get; set; }
 
         [Display(Name = "Klient")]
         public int IdKlienta { get; set; }
+
+        [ForeignKey("IdKlienta")]
         public Klient? Klient { get; set; }
     }
 }

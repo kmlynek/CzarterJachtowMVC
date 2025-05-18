@@ -16,7 +16,10 @@ namespace Firma.Data.Data.Flota
 
         [Display(Name = "Jacht")]
         public int IdJachtu { get; set; }
+
+        [ForeignKey("IdJachtu")]
         public Jacht? Jacht { get; set; }
+
     }
 
 }

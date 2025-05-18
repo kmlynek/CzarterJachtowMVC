@@ -1,5 +1,6 @@
 ﻿using Firma.Data.Data.Flota;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Firma.Data.Data.Flota
 {
@@ -10,7 +11,7 @@ namespace Firma.Data.Data.Flota
 
         [Required]
         [Display(Name = "Nazwa jachtu")]
-        public string Nazwa { get; set; }
+        public string? Nazwa { get; set; }
 
         [Display(Name = "Rok budowy")]
         public int RokBudowy { get; set; }
@@ -23,10 +24,14 @@ namespace Firma.Data.Data.Flota
 
         [Display(Name = "Kategoria jachtu")]
         public int IdKategorii { get; set; }
+
+        [ForeignKey("IdKategorii")]
         public KategoriaJachtu? KategoriaJachtu { get; set; }
 
         [Display(Name = "Port bazowy")]
         public int IdPortu { get; set; }
+
+        [ForeignKey("IdPortu")]
         public Port? Port { get; set; }
 
         public ICollection<ZdjecieJachtu> Zdjecia { get; set; } = new List<ZdjecieJachtu>();

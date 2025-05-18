@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Firma.Data.Data.Flota.Jacht>
+
+@{
+    ViewData["Title"] = "Galeria jachtów";
+    var jachty = Model.ToList();
+}
+
+<h2 class="text-center mb-4">Galeria naszych jachtów</h2>
+
+<div id="jachtCarousel" class="carousel slide mb-5 shadow" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @for (int i = 0; i < jachty.Count; i++)
+        {
+            var jacht = jachty[i];
+            var sciezka = $"{jacht.IdJachtu}.jpg";
+            var isActive = i == 0 ? "active" : "";
+
+            <div class="carousel-item @isActive text-center">
+                <img src="~/content/@sciezka" class="d-block mx-auto rounded" style="max-height: 500px; object-fit: cover;" alt="@jacht.Nazwa" />
+                <h4 class="mt-3 text-primary">@jacht.Nazwa</h4>
+            </div>
+        }
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#jachtCarousel" data-bs-slide="prev">
+        <i class="bi bi-arrow-left-circle-fill fs-1 text-primary"></i>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#jachtCarousel" data-bs-slide="next">
+        <i class="bi bi-arrow-right-circle-fill fs-1 text-primary"></i>
+    </button>
+
+</div>

@@ -10,13 +10,17 @@
     @foreach (var port in Model)
 
     {
+        var sciezka = $"grecja{port.IdPortu}.jpg";
+
         <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">@port.Nazwa</h5>
-                    <p class="card-text">@port.Lokalizacja</p>
+            <div class="border rounded shadow-sm p-3 h-100 text-center">
+                <img src="~/content/@sciezka" class="img-fluid rounded mb-3" style="height: 400px; object-fit: cover;" alt="@port.Nazwa" />
+                    <div class="card-body">
+                        <h5 class="card-title">@port.Nazwa</h5>
+                        <p class="card-text">@port.Lokalizacja</p>                    
                 </div>
             </div>
         </div>
     }
+
 </div>

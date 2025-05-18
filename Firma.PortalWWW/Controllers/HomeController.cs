@@ -1,6 +1,7 @@
 using Firma.Data.Data;
 using Firma.PortalWWW.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Firma.PortalWWW.Controllers
@@ -53,7 +54,9 @@ namespace Firma.PortalWWW.Controllers
         }
         public IActionResult Porty()
         {
-            var porty = _context.Porty.OrderBy(p => p.Nazwa).ToList();
+            var porty = _context.Porty
+                .OrderBy(p => p.Nazwa)
+                .ToList();
             return View(porty);
 
         }
@@ -67,6 +70,35 @@ namespace Firma.PortalWWW.Controllers
 
             return View();
         }
+
+        public IActionResult Flota()
+        {
+            var jachty = _context.Jachty
+                .OrderBy(j => j.Nazwa)
+                .ToList();
+
+            return View("Flota", jachty);
+        }
+
+        public IActionResult Rezerwacje()
+        {
+            var rezerwacje = _context.Rezerwacje
+                .Include(r => r.Jacht)
+                .OrderBy(r => r.DataOd)
+                .ToList();
+
+            return View(rezerwacje);
+        }
+
+        public IActionResult Galeria()
+        {
+            var jachty = _context.Jachty
+                .OrderBy(j => j.Nazwa)
+                .ToList();
+
+            return View(jachty);
+        }
+
 
 
 

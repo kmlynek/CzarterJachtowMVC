@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Firma.Data.Data.Rezerwacje.Rezerwacja>
+
+@{
+    ViewData["Title"] = "Aktywne rezerwacje";
+}
+
+<h2 class="text-center mb-4">Zarezerwowane terminy</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
+        <tr>
+            <th>Jacht</th>
+            <th>Od</th>
+            <th>Do</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Jacht?.Nazwa</td>
+                <td>@r.DataOd.ToString("yyyy-MM-dd")</td>
+                <td>@r.DataDo.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>
