@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Firma.Data.Data.Flota.Port>
+
+@{
+    ViewData["Title"] = "Dostępne porty";
+}
+
+<h2 class="text-center mb-4">Dostępne porty w Grecji</h2>
+
+<div class="row">
+    @foreach (var port in Model)
+
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@port.Nazwa</h5>
+                    <p class="card-text">@port.Lokalizacja</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

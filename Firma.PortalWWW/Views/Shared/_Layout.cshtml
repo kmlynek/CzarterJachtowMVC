@@ -17,7 +17,37 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            @await Html.PartialAsync("Odnosniki",(IEnumerable<Firma.Data.Data.CMS.Strona>)ViewBag.ModelStrony)
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            <i class="bi bi-house-door-fill me-1"></i> Strona główna
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Porty">
+                            <i class="bi bi-geo-alt-fill me-1"></i> Porty
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Oferta">
+                            <i class="bi bi-files me-1"></i> Oferta
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Dostepnosc">
+                            <i class="bi bi-calendar-check-fill me-1"></i> Dostępność
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Kontakt">
+                            <i class="bi bi-envelope-fill me-1"></i> Kontakt
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 

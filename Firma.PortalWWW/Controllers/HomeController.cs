@@ -51,6 +51,13 @@ namespace Firma.PortalWWW.Controllers
         {
             return View();
         }
+        public IActionResult Porty()
+        {
+            var porty = _context.Porty.OrderBy(p => p.Nazwa).ToList();
+            return View(porty);
+
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
