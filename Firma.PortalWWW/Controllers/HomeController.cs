@@ -1,6 +1,7 @@
 using Firma.Data.Data;
 using Firma.PortalWWW.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -36,16 +37,11 @@ namespace Firma.PortalWWW.Controllers
             return View();
 
         }
-
-
-        public IActionResult Oferta()
+        //ViewBag.Teksty dostepny w kazdej akcji tego kontrollera
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            return View();
-        }
-
-        public IActionResult Dostepnosc()
-        {
-            return View();
+            ViewBag.Teksty = _context.Parametry.ToDictionary(p => p.Klucz, p => p.Wartosc);
+            base.OnActionExecuting(context);
         }
 
         public IActionResult Kontakt()
@@ -77,7 +73,7 @@ namespace Firma.PortalWWW.Controllers
                 .OrderBy(j => j.Nazwa)
                 .ToList();
 
-            return View("Flota", jachty);
+            return View(jachty);
         }
 
         public IActionResult Rezerwacje()
@@ -98,8 +94,6 @@ namespace Firma.PortalWWW.Controllers
 
             return View(jachty);
         }
-
-
 
 
 

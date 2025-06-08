@@ -1,0 +1,25 @@
+﻿@model Firma.Data.Data.CMS.Parametr
+
+@{
+    ViewData["Title"] = "Usuń parametr";
+}
+
+<h2 class="mb-4 text-danger">Czy na pewno chcesz usunąć ten parametr?</h2>
+
+<div class="border rounded p-4 shadow-sm">
+    <dl class="row">
+        <dt class="col-sm-3">Klucz</dt>
+        <dd class="col-sm-9">@Model.Klucz</dd>
+
+        <dt class="col-sm-3">Wartość</dt>
+        <dd class="col-sm-9">@Model.Wartosc</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdParametru" />
+        <button type="submit" class="btn btn-danger">
+            <i class="bi bi-trash me-1"></i> Usuń
+        </button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Anuluj</a>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+﻿@model Firma.Data.Data.CMS.Parametr
+
+@{
+    ViewData["Title"] = "Edytuj parametr";
+}
+
+<h2 class="mb-4">Edytuj parametr</h2>
+
+<form asp-action="Edit" class="border rounded p-4 shadow-sm">
+    <input type="hidden" asp-for="IdParametru" />
+    <div class="mb-3">
+        <label asp-for="Klucz" class="form-label"></label>
+        <input asp-for="Klucz" class="form-control" />
+        <span asp-validation-for="Klucz" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Wartosc" class="form-label"></label>
+        <input asp-for="Wartosc" class="form-control" />
+        <span asp-validation-for="Wartosc" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">
+        <i class="bi bi-save me-1"></i> Zapisz
+    </button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Anuluj</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

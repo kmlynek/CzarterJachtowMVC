@@ -5,6 +5,7 @@ using Firma.Data.Data.Rezerwacje;
 using Firma.Data.Data.Komunikacja;
 using Firma.Data.Data.Sklep;
 
+
 namespace Firma.Data.Data
 {
     public class FirmaContext : DbContext
@@ -34,6 +35,10 @@ namespace Firma.Data.Data
         public DbSet<Aktualnosc> Aktualnosc { get; set; } = default!;
         public DbSet<Rodzaj> Rodzaj { get; set; } = default!;
         public DbSet<Towar> Towar { get; set; } = default!;
+
+        //Parametr
+        public DbSet<Parametr> Parametry { get; set; }
+
 
     }
 }

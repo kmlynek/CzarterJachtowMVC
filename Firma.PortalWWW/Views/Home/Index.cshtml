@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Morski Czarter – Grecja";
+    var teksty = ViewBag.Teksty as Dictionary<string, string>;
 }
 
 <!-- KARUZELA -->
@@ -8,15 +9,15 @@
         <div class="carousel-item active">
             <img src="~/content/grecja2.jpg" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="Grecja 1">
             <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-                <h2 class="fw-bold">Czarter w Grecji</h2>
-                <p>Odkryj wyspy Rodos, Krety, Santorini...</p>
+                <<h2 class="fw-bold">@teksty["karuzela_naglowek1"]</h2>
+                <p>@teksty["karuzela_opis1"]</p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="~/content/grecja1.jpg" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="Grecja 2">
             <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-                <h2 class="fw-bold">Niezapomniane rejsy</h2>
-                <p>Nowoczesne jachty, turkusowe wody, grecki klimat</p>
+                <h2 class="fw-bold">@teksty["karuzela_naglowek2"]</h2>
+                <p>@teksty["karuzela_opis2"]</p>
             </div>
         </div>
     </div>
@@ -30,7 +31,7 @@
 
 <!-- DLACZEGO MY -->
 <div class="container text-center mb-5">
-    <h2 class="mb-4">Dlaczego Morski Czarter?</h2>
+    <h2 class="mb-4">@teksty["naglowek_dlaczego"]</h2>
     <div class="row">
         <div class="col-md-4">
             <i class="bi bi-geo-alt-fill display-4 text-danger mb-2"></i>
@@ -56,8 +57,8 @@
 <!--Zarezerwuj teraz-->
 <div class="bg-primary bg-opacity-75 text-white text-center py-5 mb-5">
     <div class="container">
-        <h1 class="display-5 fw-bold">Zarezerwuj swój rejs już dziś!</h1>
-        <p class="lead">Skontaktuj się z nami przesyłając odpowiedni formularz – doradzimy, dopasujemy i zarezerwujemy idealną jednostkę.</p>
+        <h1 class="display-5 fw-bold">@teksty["zarezerwuj_tytul"]</h1>
+        <p class="lead">@teksty["zarezerwuj_opis"]</p>
         <a href="/Home/Kontakt" class="btn btn-light btn-lg mt-3">
             <i class="bi bi-calendar-check me-2"></i>Zarezerwuj teraz
         </a>
@@ -66,7 +67,7 @@
 
 
 
-<!-- OPINIE -->
+<!-- OPINIE
 <div class="container mb-5">
     <h2 class="text-center mb-4">Opinie naszych klientów</h2>
     <div class="row">
@@ -97,3 +98,4 @@
     </div>
 </div>
 
+ -->
