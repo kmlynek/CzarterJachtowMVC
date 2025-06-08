@@ -1,6 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Kontakt";
+﻿@{    
     var teksty = ViewBag.Teksty as Dictionary<string, string>;
+
+    ViewData["Title"] = teksty["tytul_podstrona6"];
 }
 <h2 class="mb-4 text-center">@teksty["kontakt_naglowek"]</h2>
 

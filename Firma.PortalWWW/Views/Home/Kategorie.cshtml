@@ -1,7 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Kategorie jachtów";
     var kategorie = ViewBag.ModelKategorie as List<Firma.Data.Data.Flota.KategoriaJachtu>;
     var teksty = ViewBag.Teksty as Dictionary<string, string>;
+
+    ViewData["Title"] = teksty["tytul_podstrona2"];
 }
 
 <h2 class="text-center mb-4">@teksty["kategorie_naglowek"]</h2>

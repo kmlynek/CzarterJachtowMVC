@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<Firma.Data.Data.Rezerwacje.Rezerwacja>
 
 @{
-    ViewData["Title"] = "Aktywne rezerwacje";
     var teksty = ViewBag.Teksty as Dictionary<string, string>;
+
+    ViewData["Title"] = teksty["tytul_podstrona4"];
 }
 
 <h2 class="text-center mb-4">@teksty["rezerwacje_naglowek"]</h2>

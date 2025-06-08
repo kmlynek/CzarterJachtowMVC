@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<Firma.Data.Data.Flota.Jacht>
 
 @{
-    ViewData["Title"] = "Galeria jachtów";
     var jachty = Model.ToList();
     var teksty = ViewBag.Teksty as Dictionary<string, string>;
+
+    ViewData["Title"] = teksty["tytul_podstrona5"];
 }
 
 <h2 class="text-center mb-4">@teksty["galeria_naglowek"]</h2>

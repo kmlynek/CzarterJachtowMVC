@@ -1,6 +1,7 @@
 ﻿@{
-    ViewData["Title"] = "Morski Czarter – Grecja";
     var teksty = ViewBag.Teksty as Dictionary<string, string>;
+
+    ViewData["Title"] = teksty["tytul_strona_glowna"];
 }
 
 <!-- KARUZELA -->
