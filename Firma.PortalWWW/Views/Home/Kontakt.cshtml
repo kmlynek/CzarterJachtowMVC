@@ -2,23 +2,26 @@
     ViewData["Title"] = "Kontakt";
     var teksty = ViewBag.Teksty as Dictionary<string, string>;
 }
-<h2 class="mb-4 text-center">Skontaktuj się z nami</h2>
+<h2 class="mb-4 text-center">@teksty["kontakt_naglowek"]</h2>
 
 <div class="row align-items-start">
     <div class="col-lg-6">
-        <form>
-            <div class="mb-3">
-                <label for="Imie" class="form-label">Imię i nazwisko</label>
-                <input type="text" class="form-control" id="Imie" placeholder="Jan Kowalski">
-            </div>
-            <div class="mb-3">
-                <label for="Email" class="form-label">Adres e-mail</label>
-                <input type="email" class="form-control" id="Email" placeholder="jan@nazwa.com">
-            </div>
-            <div class="mb-3">
-                <label for="Jacht" class="form-label">Wybierz jacht</label>
-                <select class="form-select" id="Jacht">
-                    <option selected disabled>Wybierz...</option>
+
+<form>
+    <div class="mb-3">
+        <label for="Imie" class="form-label">@teksty["kontakt_etykieta_imie"]</label>
+        <input type="text" class="form-control" id="Imie" placeholder="@teksty["kontakt_placeholder_imie"]">
+    </div>
+
+    <div class="mb-3">
+        <label for="Email" class="form-label">@teksty["kontakt_etykieta_email"]</label>
+        <input type="email" class="form-control" id="Email" placeholder="@teksty["kontakt_placeholder_email"]">
+    </div>
+
+    <div class="mb-3">
+        <label for="Jacht" class="form-label">@teksty["kontakt_etykieta_jacht"]</label>
+        <select class="form-select" id="Jacht">
+            <option selected disabled>@teksty["kontakt_jacht_wybierz"]</option>
                     <optgroup label="Jachty motorowodne">
                         <option>Posejdon 500</option>
                         <option>Rodos Explorer</option>
@@ -31,23 +34,27 @@
                         <option>Athena 400</option>
                         <option>Santorini Cat</option>
                     </optgroup>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="DataOd" class="form-label">Data rozpoczęcia czarteru</label>
-                <input type="date" class="form-control" id="DataOd" name="DataOd" required>
-            </div>
-            <div class="mb-3">
-                <label for="DataDo" class="form-label">Data zakończenia czarteru</label>
-                <input type="date" class="form-control" id="DataDo" name="DataDo" required>
-            </div>
+        </select>
+    </div>
 
-            <div class="mb-3">
-                <label for="Wiadomosc" class="form-label">Wiadomość</label>
-                <textarea class="form-control" id="Wiadomosc" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Wyślij</button>
-        </form>
+    <div class="mb-3">
+        <label for="DataOd" class="form-label">@teksty["kontakt_etykieta_data_od"]</label>
+        <input type="date" class="form-control" id="DataOd" name="DataOd" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="DataDo" class="form-label">@teksty["kontakt_etykieta_data_do"]</label>
+        <input type="date" class="form-control" id="DataDo" name="DataDo" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="Wiadomosc" class="form-label">@teksty["kontakt_etykieta_wiadomosc"]</label>
+        <textarea class="form-control" id="Wiadomosc" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">@teksty["kontakt_przycisk_wyslij"]</button>
+</form>
+
     </div>
      
     <div class="col-lg-6 mt-4 mt-lg-0 d-flex align-items-center justify-content-center">
