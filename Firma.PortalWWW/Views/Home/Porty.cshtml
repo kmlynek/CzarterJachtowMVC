@@ -6,7 +6,7 @@
     var teksty = ViewBag.Teksty as Dictionary<string, string>;
 }
 
-<h2 class="text-center mb-4">Dostępne porty w Grecji</h2>
+<h2 class="text-center mb-4">@teksty["porty_naglowek"]</h2>
 
 <div class="row">
     @foreach (var port in Model)

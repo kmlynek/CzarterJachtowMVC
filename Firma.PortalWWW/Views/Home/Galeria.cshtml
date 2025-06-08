@@ -6,7 +6,7 @@
     var teksty = ViewBag.Teksty as Dictionary<string, string>;
 }
 
-<h2 class="text-center mb-4">Galeria naszych jachtów</h2>
+<h2 class="text-center mb-4">@teksty["galeria_naglowek"]</h2>
 
 <div id="jachtCarousel" class="carousel slide mb-5 shadow" data-bs-ride="carousel">
     <div class="carousel-inner">

@@ -4,7 +4,7 @@
     var teksty = ViewBag.Teksty as Dictionary<string, string>;
 }
 
-<h2 class="text-center mb-4">Rodzaje jachtów</h2>
+<h2 class="text-center mb-4">@teksty["kategorie_naglowek"]</h2>
 
 <div class="row">
     @foreach (var kat in kategorie)
