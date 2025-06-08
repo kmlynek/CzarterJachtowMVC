@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Galeria jachtów";
     var jachty = Model.ToList();
+    var teksty = ViewBag.Teksty as Dictionary<string, string>;
 }
 
 <h2 class="text-center mb-4">Galeria naszych jachtów</h2>

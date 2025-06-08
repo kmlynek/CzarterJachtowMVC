@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<Firma.Data.Data.Flota.Jacht>
+@{
+    var teksty = ViewBag.Teksty as Dictionary<string, string>;
+}
 
 <div class="container mb-5">
-    <h2 class="text-center mb-4">Polecane jachty</h2>
+    <h2 class="text-center mb-4">@teksty["polecane_naglowek"]</h2>
 
     <div class="row">
         @foreach (var jacht in Model)

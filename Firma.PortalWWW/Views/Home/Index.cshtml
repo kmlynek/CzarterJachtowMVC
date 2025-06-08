@@ -35,21 +35,22 @@
     <div class="row">
         <div class="col-md-4">
             <i class="bi bi-geo-alt-fill display-4 text-danger mb-2"></i>
-            <h5>Greckie porty</h5>
-            <p class="text-muted">Start z Aten, Lefkady, Korfu, Santorini – wybierz kierunek!</p>
+            <h5>@teksty["dlaczego_box1_tytul"]</h5>
+            <p class="text-muted">@teksty["dlaczego_box1_opis"]</p>
         </div>
         <div class="col-md-4">
             <i class="bi bi-rocket display-4 text-primary mb-2"></i>
-            <h5>Nowoczesna flota</h5>
-            <p class="text-muted">Jachty motorowe, żaglowe, katamarany z klimatyzacją i WiFi</p>
+            <h5>@teksty["dlaczego_box2_tytul"]</h5>
+            <p class="text-muted">@teksty["dlaczego_box2_opis"]</p>
         </div>
         <div class="col-md-4">
             <i class="bi bi-sun-fill display-4 text-warning mb-2"></i>
-            <h5>Idealna pogoda</h5>
-            <p class="text-muted">Słońce, lazurowe morze i grecka kuchnia</p>
+            <h5>@teksty["dlaczego_box3_tytul"]</h5>
+            <p class="text-muted">@teksty["dlaczego_box3_opis"]</p>
         </div>
     </div>
 </div>
+
 
 <!-- POLECANE JACHTY -->
 @await Html.PartialAsync("PolecaneJachty", (IEnumerable<Firma.Data.Data.Flota.Jacht>)ViewBag.PolecaneJachty)
@@ -60,7 +61,7 @@
         <h1 class="display-5 fw-bold">@teksty["zarezerwuj_tytul"]</h1>
         <p class="lead">@teksty["zarezerwuj_opis"]</p>
         <a href="/Home/Kontakt" class="btn btn-light btn-lg mt-3">
-            <i class="bi bi-calendar-check me-2"></i>Zarezerwuj teraz
+            <i class="bi bi-calendar-check me-2"></i>@teksty["zarezerwuj_odnosnik"]
         </a>
     </div>
 </div>
